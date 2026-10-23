@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Space Invaders — Официальный сайт</title>
+<link rel="stylesheet" href="style.css">
+<!-- Иконка сайта (эмодзи) -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
+</head>
+<body>
+
+<!-- Игровой интерфейс -->
+<div class="ui" id="gameUI">
+  <div>Ур: <span id="uiLevel">1</span></div>
+  <div>Волна: <span id="uiWave">1</span></div>
+  <div>Счёт: <span id="uiScore">0</span></div>
+  <div>🪙 <span id="uiCoins">0</span></div>
+  <button class="btn" style="padding: 5px 15px; font-size: 0.8rem; margin:0; min-width:auto;" onclick="togglePause()">⏸</button>
+</div>
+
+<div id="levelMessage"></div>
+<canvas id="game"></canvas>
+
+<!-- ГЛАВНОЕ МЕНЮ -->
+<div class="screen active" id="mainMenu">
+  <h1>SPACE<br>INVADERS</h1>
+  <p>Монеты: 🪙 <span id="menuCoins">0</span></p>
+  <button class="btn" onclick="showScreen('levelSelectScreen')">Играть</button>
+  <button class="btn btn-secondary" onclick="showScreen('shopScreen')">Магазин</button>
+</div>
+
+<!-- МАГАЗИН -->
+<div class="screen" id="shopScreen">
+  <h2>Магазин</h2>
+  <p>Монеты: 🪙 <span id="shopCoins">0</span></p>
+  <div class="shop-grid" id="shopGrid"></div>
+  <button class="btn" onclick="showScreen('mainMenu')" style="margin-top: 20px;">Назад</button>
+</div>
+
+<!-- ВЫБОР УРОВНЯ -->
+<div class="screen" id="levelSelectScreen">
+  <h2>Уровни</h2>
+  <div class="levels-grid" id="levelsGrid"></div>
+  <button class="btn" onclick="showScreen('mainMenu')" style="margin-top: 20px;">Назад</button>
+</div>
+
+<!-- ПАУЗА -->
+<div class="screen" id="pauseScreen">
+  <h1>ПАУЗА</h1>
+  <button class="btn" onclick="togglePause()">Продолжить</button>
+  <button class="btn btn-secondary" onclick="quitToMenu()">В меню</button>
+</div>
+
+<!-- ЭКРАН ПРОИГРЫША -->
+<div class="screen" id="gameOverScreen">
+  <h1 style="color: #ff2d6f;">GAME OVER</h1>
+  <p>Счёт: <span id="finalScore">0</span><br>Монеты: 🪙 <span id="earnedCoins">0</span></p>
+  <button class="btn" onclick="showScreen('levelSelectScreen')">К уровням</button>
+  <button class="btn btn-secondary" onclick="showScreen('mainMenu')">В меню</button>
+</div>
+
+<!-- ЭКРАН ПОБЕДЫ -->
+<div class="screen" id="levelWinScreen">
+  <h1 style="color: #7cff6b;">ПОБЕДА!</h1>
+  <p>Монеты: 🪙 <span id="winEarnedCoins">0</span></p>
+  <button class="btn" onclick="nextLevelFromWin()">Дальше</button>
+  <button class="btn btn-secondary" onclick="showScreen('mainMenu')">В меню</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
